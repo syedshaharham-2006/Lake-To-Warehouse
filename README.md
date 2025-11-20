@@ -33,8 +33,6 @@ This project demonstrates a production-style data pipeline on AWS:
 
 ---
 
-## Architecture  
-![Image](https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2020/01/23/S3SpendwithGlueRedshift2.png)
 
 ---
 
