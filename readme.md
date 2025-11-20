@@ -1,6 +1,8 @@
 # LakeToWarehouse – AWS S3 → Glue → Redshift Pipeline  
 End-to-end AWS data pipeline that ingests raw data from Amazon S3, catalogs it using AWS Glue Crawler, queries with Amazon Athena, transforms through AWS Glue ETL jobs, and loads the processed data into Amazon Redshift for analytics and reporting.
 
+---
+
 ## Table of Contents  
 - [Overview](#overview)  
 - [Architecture](#architecture)  
@@ -18,6 +20,8 @@ End-to-end AWS data pipeline that ingests raw data from Amazon S3, catalogs it u
 - [Contributing](#contributing)  
 - [License](#license)  
 
+---
+
 ## Overview  
 This project demonstrates a production-style data pipeline on AWS:  
 - Raw data lands in an S3 bucket.  
@@ -27,8 +31,12 @@ This project demonstrates a production-style data pipeline on AWS:
 - The transformed data is loaded into a Redshift cluster for analytics and reporting.  
 - This architecture supports scalable, serverless (or near-serverless) data ingestion, transformation and warehousing.
 
+---
+
 ## Architecture  
 ![Image](https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2020/01/23/S3SpendwithGlueRedshift2.png)
+
+---
 
 **Key components:**  
 - **Amazon S3** – Source raw data lake.  
@@ -38,6 +46,8 @@ This project demonstrates a production-style data pipeline on AWS:
 - **Amazon Redshift** – Data warehouse for analytics, BI and reporting.  
 - **Glue Data Catalog** – Metadata store used by both ETL and Athena.
 
+---
+
 ## Features  
 - Fully automated pipeline from raw ingestion to analytics-ready tables.  
 - Modular architecture: separate raw, curated, warehouse layers.  
@@ -45,6 +55,8 @@ This project demonstrates a production-style data pipeline on AWS:
 - Scalable using AWS managed services.  
 - Clean separation of concerns: ingestion, cataloging, transformation, warehousing.  
 - Example notebooks included for Redshift connection and ETL logic.
+
+---
 
 ## Prerequisites  
 Before you begin, ensure you have:  
@@ -56,10 +68,14 @@ Before you begin, ensure you have:
 
 ## Setup & Deployment  
 
+---
+
 ### 1. S3 Source Data  
 - Create an S3 bucket (e.g., `my-data-lake-raw`).  
 - Upload your raw dataset into a folder (for example `s3://my-data-lake-raw/source/`).  
 - Ensure proper folder structure, naming conventions and file formats (CSV, Parquet, JSON) as expected.
+
+---
 
 ### 2. Glue Crawler and Data Catalog  
 - Create a Glue Crawler that points to the S3 bucket/folder you created.  
@@ -67,10 +83,14 @@ Before you begin, ensure you have:
 - Run the crawler so it builds table definitions.  
 - Confirm in Glue Console that the tables exist with correct schema.
 
+---
+
 ### 3. Athena Query Layer  
 - In AWS Athena, set the Query Result location (e.g., `s3://my-data-lake-raw/athena_results/`).  
 - Run sample SQL queries on the raw tables (e.g., `SELECT * FROM raw_data_db.table LIMIT 10;`).  
 - Use this layer for ad-hoc exploration and validation.
+
+---
 
 ### 4. Glue ETL Job  
 - Locate the notebook (e.g., `ETL-Code.ipynb`) in this repository.  
@@ -78,6 +98,8 @@ Before you begin, ensure you have:
 - Configure a Glue Job: assign IAM role, set Worker type, N.  
 - In the job, read from Glue catalog (raw), apply transformations, write to Redshift or curated S3 bucket.  
 - Example code includes connection setup, schema enforcement, partitioning etc.
+
+---
 
 ### 5. Redshift Data Warehouse  
 - Provision a Redshift cluster (e.g., `dc2.large`, with VPC, subnet group, security group).  
@@ -87,6 +109,8 @@ Before you begin, ensure you have:
 - After job runs, verify that tables are populated with expected rows.  
 - Connect a BI tool (e.g., Tableau, QuickSight, Power BI) to Redshift for analysis.
 
+---
+
 ## Usage  
 1. Drop new raw files into the S3 source folder (maintaining naming conventions).  
 2. Run the Glue Crawler (or schedule it via AWS Glue Trigger).  
@@ -95,13 +119,4 @@ Before you begin, ensure you have:
 5. Verify the data in Redshift.  
 6. Use a BI tool to build dashboards, reports, or further analytics on Redshift tables.
 
-## Directory Structure  
-```text
-/  
-├─ Data/  
-│   ├─ (raw sample files)  
-│   ├─ Dimenstion.drawio.pdf  
-│   ├─ Model.drawio.png  
-├─ ETL-Code.ipynb        # Notebook showing ETL logic  
-├─ redshift-connection.ipynb  # Notebook to test Redshift connectivity  
-├─ README.md  
+---
